@@ -1,0 +1,41 @@
+# dependencies
+node_modules/
+*/node_modules/
+
+# env files
+.env
+.env.*
+
+# logs
+logs
+*.log
+npm-debug.log*
+
+# build folders
+dist/
+build/
+
+# cache
+.cache/
+.parcel-cache/
+
+# nextjs
+.next/
+
+# vite
+.vite/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# editor
+.vscode/
+.idea/
+
+# uploads/temp
+uploads/
+temp/
+
+# coverage
+coverage/
