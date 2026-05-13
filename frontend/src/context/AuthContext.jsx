@@ -16,10 +16,8 @@ export const AuthProvider = ({children}) => {
   const checkAuth = async () => {
     try {
       const response = await API.get('/auth/me')
-      console.log('Authenticated user:', response.data.user)
       setUser(response.data.user)
     } catch (error) {
-      console.log('Not authenticated')
     } finally {
       setLoading(false)
     }

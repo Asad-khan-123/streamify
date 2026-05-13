@@ -5,6 +5,7 @@ import connectDb from './utils/db.js'
 import cors from 'cors'
 import authRouter from './routers/authRoutes.js'
 import courseRoute from './routers/courseRoute.js'
+import lectureRoute from './routers/lectureRoute.js'
 
 
 const app = express()
@@ -23,6 +24,7 @@ app.get('/', (req, res) => {
   
 app.use('/api/auth', authRouter)
 app.use('/api/courses', courseRoute)
+app.use('/api/lectures', lectureRoute)
 
 const PORT = ENV.PORT
 const server = async () => {

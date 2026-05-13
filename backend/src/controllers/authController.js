@@ -34,7 +34,7 @@ export const googleAuth = async (req, res) => {
       httpOnly: true,
       secure: false,
       sameSite: 'lax',
-      maxAge: 7*24*60*60*1000 // 7 hour
+      maxAge: 12*7*24*60*60*1000 // 
     })
 
     res.status(200).json({ success: true, message: 'Google authentication successful', user })
