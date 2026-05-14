@@ -8,7 +8,7 @@ function UpgradeLecture() {
 
   const [lecture, setLecture] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const [uploading, setUploading] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [video, setVideo] = useState(null);
@@ -32,7 +32,7 @@ function UpgradeLecture() {
     e.preventDefault();
 
     try {
-      const response = await API.put(`/lectures/update/${lectureId}`, {
+      const response = await API.put(`/lectures/${lectureId}`, {
         title,
         description
       });
@@ -45,6 +45,47 @@ function UpgradeLecture() {
       console.log(error);
     }
   };
+
+  const handleVideoUpload = async () => {
+
+   if (!video) {
+      return alert("Select a video");
+   }
+
+   try {
+
+      setUploading(true);
+
+      const formData = new FormData();
+
+      formData.append("video", video);
+
+      const response = await API.put(
+         `/lectures/video/${lectureId}`,
+         formData,
+         {
+            headers: {
+               "Content-Type": "multipart/form-data"
+            }
+         }
+      );
+
+      setLecture(response.data.lecture);
+
+      alert("Video uploaded");
+
+   } catch (error) {
+
+      console.log(error);
+
+   } finally {
+
+      setUploading(false);
+
+   }
+
+};
+
 
   useEffect(() => {
     const loadData = async () => {
@@ -275,11 +316,18 @@ function UpgradeLecture() {
               )}
 
               <button
-                disabled
-                className="h-14 rounded-2xl bg-gradient-to-r from-[#6C63FF] to-[#8B85FF] text-white font-semibold shadow-lg opacity-60 cursor-not-allowed"
-              >
-                Upload Video (Next Step)
-              </button>
+   onClick={handleVideoUpload}
+   disabled={uploading}
+   className="h-14 rounded-2xl bg-gradient-to-r from-[#6C63FF] to-[#8B85FF] text-white font-semibold shadow-lg"
+>
+
+   {
+      uploading
+         ? "Uploading..."
+         : "Upload Video"
+   }
+
+</button>
 
             </div>
 

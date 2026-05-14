@@ -17,6 +17,11 @@ const lectureSchema = new mongoose.Schema({
       default: ""
    },
 
+   videoPublicId: {
+      type: String,
+      default: ""
+   },
+   
    pdfNotes: {
       type: String,
       default: ""

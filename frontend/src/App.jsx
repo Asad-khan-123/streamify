@@ -14,6 +14,7 @@ import CourseDetails from './pages/CourseDetails'
 import ManageCourse from './pages/ManageCourse'
 import ManageLecture from "./pages/ManageLecture";
 import UpdateLecture from "./pages/UpgradeLecture";
+import LecturePlayer from './pages/LecturePlayer'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
     <Route path='/dashboard' element={<Dashboard />} />
     <Route path='/courses' element={<Courses />} /> 
     <Route path='/course/:courseId' element={<CourseDetails />} />
+    <Route path='/course/:courseId/lectures/:lectureId' element={<LecturePlayer/>} />
     </Route> 
 
     {/* Admin Routes - Only for admins */}

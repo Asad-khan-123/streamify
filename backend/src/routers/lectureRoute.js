@@ -1,6 +1,6 @@
 import express from "express";
-
-import { createLecture, getCourseLectures, deleteLecture, getLectureById, updateLecture} from "../controllers/lectureController.js";
+import upload from "../middlewares/uploadMiddleware.js";
+import { createLecture, getCourseLectures, deleteLecture, getLectureById, updateLecture, uploadLectureVideo} from "../controllers/lectureController.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import adminMiddleware from "../middlewares/adminMiddleware.js";
 
@@ -41,4 +41,11 @@ router.put(
    updateLecture
 );
 
+router.put(
+   "/video/:lectureId",
+   authMiddleware,
+   adminMiddleware,
+   upload.single("video"),
+   uploadLectureVideo
+);
 export default router;

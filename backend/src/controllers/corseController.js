@@ -111,7 +111,7 @@ export const getSingleCourse = async (req, res) => {
       
       const course = await Course.findById(
          courseId
-      );
+      ).populate('lectures');
 
       if (!course) {
         
